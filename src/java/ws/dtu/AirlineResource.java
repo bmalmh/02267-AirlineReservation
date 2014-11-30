@@ -4,14 +4,13 @@
  */
 package ws.dtu;
 
-import com.google.gson.Gson;
+import com.thoughtworks.xstream.XStream;
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
 import dk.dtu.imm.fastmoney.types.AccountType;
 import flightObjects.FlightDataCreator;
 import flightObjects.FlightListData;
 import java.util.ArrayList;
-
 /**
  *
  * 
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 
 @javax.jws.WebService
 public class AirlineResource {
-    
     private AccountType airlineAccount = createAccount("LameDuck", "50208812");
     BankService bank = new BankService();
     static ArrayList<FlightListData> mockFlightData = FlightDataCreator.getFlightListData();
@@ -43,10 +41,12 @@ public class AirlineResource {
                 }
             }
         }
+        
+        XStream xstream = new XStream();
 
-        String json = new Gson().toJson(result);
-        // Husk at ændre return værdi
-        return json;
+        String xml = xstream.toXML(result);
+                
+        return xml;
     }
 
     
