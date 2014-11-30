@@ -7,6 +7,7 @@ package ws.dtu;
 import com.google.gson.Gson;
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
+import dk.dtu.imm.fastmoney.types.AccountType;
 import flightObjects.FlightDataCreator;
 import flightObjects.FlightListData;
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ import java.util.ArrayList;
 
 @javax.jws.WebService
 public class AirlineResource {
-
+    
+    private AccountType airlineAccount = new AccountType();
     BankService bank = new BankService();
     static ArrayList<FlightListData> mockFlightData = FlightDataCreator.getFlightListData();
     final int group = 1;
@@ -53,33 +55,31 @@ public class AirlineResource {
     
     public boolean bookFlight
             (String bookingNumber, 
-             dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCard, 
-             dk.dtu.imm.fastmoney.types.AccountType account) 
+             dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCard) 
              throws Exception {
         
         ArrayList<FlightListData> result = new ArrayList<FlightListData>();
         for (FlightListData fldl : mockFlightData) {
             if (fldl.bookingNumber.equals(bookingNumber)) {
              try{
-                 chargeCreditCard(group, creditCard, fldl.price, account);
+                 chargeCreditCard(group, creditCard, fldl.price, airlineAccount);
                  return true;
              } catch(CreditCardFaultMessage e){
                  throw new Exception("Credit card could not be charged for book flight", e);
              }
             }
         }
-        return false;
+        throw new Exception("That bookingnumber doesn't exist.");
     }
 
     public boolean cancelFlight(String bookingNumber, int price,
-                                dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCard,
-                                dk.dtu.imm.fastmoney.types.AccountType account)
+                                dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCard)
                                 throws Exception{
         ArrayList<FlightListData> result = new ArrayList<FlightListData>();
         for (FlightListData fldl : mockFlightData) {
             if (fldl.bookingNumber.equals(bookingNumber)) {
              try{
-                 refundCreditCard(group, creditCard, fldl.price, account);
+                 refundCreditCard(group, creditCard, fldl.price, airlineAccount);
                  return true;
              } catch(CreditCardFaultMessage e){
                  throw new Exception("Credit card could not be refunded for book flight", e);
