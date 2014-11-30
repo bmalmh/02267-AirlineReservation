@@ -20,11 +20,18 @@ import java.util.ArrayList;
 @javax.jws.WebService
 public class AirlineResource {
     
-    private AccountType airlineAccount = new AccountType();
+    private AccountType airlineAccount = createAccount("LameDuck", "50208812");
     BankService bank = new BankService();
     static ArrayList<FlightListData> mockFlightData = FlightDataCreator.getFlightListData();
     final int group = 1;
 
+    public AccountType createAccount(String name, String number){
+        AccountType account = new AccountType();
+        account.setName(name);
+        account.setNumber(number);
+        return account;
+    }
+    
     public String getFlight(String startAirport, String destAirport, String liftoffDate) {
         ArrayList<FlightListData> result = new ArrayList<FlightListData>();
         for (FlightListData fld : mockFlightData) {
@@ -57,8 +64,6 @@ public class AirlineResource {
             (String bookingNumber, 
              dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCard) 
              throws Exception {
-        
-        ArrayList<FlightListData> result = new ArrayList<FlightListData>();
         for (FlightListData fldl : mockFlightData) {
             if (fldl.bookingNumber.equals(bookingNumber)) {
              try{
