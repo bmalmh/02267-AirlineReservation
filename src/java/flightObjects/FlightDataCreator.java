@@ -3,8 +3,6 @@
  * and open the template in the editor.
  */
 package flightObjects;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -29,21 +27,21 @@ public class FlightDataCreator {
         FlightData flightFour = new FlightData("Antartica", "Nassau", "2014-12-24 16:34", "2014-12-25 05:30", "Arctic Airlines");
         
         
-        flightListData.add(new FlightListData("SKY-654", "Expedia", flightOne, 3000 ));
-        flightListData.add(new FlightListData("SKY-655", "Momondo", flightOne, 3500 ));
-        flightListData.add(new FlightListData("SKY-656", "Expedia", flightOne, 3750 ));
+        flightListData.add(new FlightListData("SKY-654", "LameDuck", flightOne, 3000 ));
+        flightListData.add(new FlightListData("SKY-655", "LameDuck", flightOne, 3500 ));
+        flightListData.add(new FlightListData("SKY-656", "LameDuck", flightOne, 3750 ));
        
-        flightListData.add(new FlightListData("IKR-102", "Momondo", flightTwo, 1500 ));
-        flightListData.add(new FlightListData("IKR-103", "Momondo", flightTwo, 1000 ));
-        flightListData.add(new FlightListData("IKR-104", "Momondo", flightTwo, 470 ));
+        flightListData.add(new FlightListData("IKR-102", "LameDuck", flightTwo, 1500 ));
+        flightListData.add(new FlightListData("IKR-103", "LameDuck", flightTwo, 1000 ));
+        flightListData.add(new FlightListData("IKR-104", "LameDuck", flightTwo, 470 ));
         
-        flightListData.add(new FlightListData("PLO-365", "Expedia", flightThree, 2600 ));
-        flightListData.add(new FlightListData("PLO-366", "Expedia", flightThree, 1800 ));
-        flightListData.add(new FlightListData("PLO-367", "Expedia", flightThree, 1490 ));
+        flightListData.add(new FlightListData("PLO-365", "LameDuck", flightThree, 2600 ));
+        flightListData.add(new FlightListData("PLO-366", "LameDuck", flightThree, 1800 ));
+        flightListData.add(new FlightListData("PLO-367", "LameDuck", flightThree, 1490 ));
         
-        flightListData.add(new FlightListData("AHD-854", "Momondo", flightFour, 50000 ));
-        flightListData.add(new FlightListData("AHD-855", "Momondo", flightFour, 75000 ));
-        flightListData.add(new FlightListData("AHD-856", "Momondo", flightFour, 125000 ));
+        flightListData.add(new FlightListData("AHD-854", "LameDuck", flightFour, 50000 ));
+        flightListData.add(new FlightListData("AHD-855", "LameDuck", flightFour, 75000 ));
+        flightListData.add(new FlightListData("AHD-856", "LameDuck", flightFour, 125000 ));
         
 
         return flightListData;
