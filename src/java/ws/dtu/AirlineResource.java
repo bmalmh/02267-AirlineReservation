@@ -77,7 +77,7 @@ public class AirlineResource {
         throw new Exception("That bookingnumber doesn't exist.");
     }
 
-    public boolean cancelFlight(String bookingNumber, int price,
+    public boolean cancelFlight(String bookingNumber,
                                 dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCard)
                                 throws Exception{
         ArrayList<FlightListData> result = new ArrayList<FlightListData>();
