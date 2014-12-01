@@ -23,7 +23,7 @@ public class AirlineResource {
     static ArrayList<FlightListData> mockFlightData = FlightDataCreator.getFlightListData();
     final int group = 1;
 
-    public AccountType createAccount(String name, String number){
+    private AccountType createAccount(String name, String number){
         AccountType account = new AccountType();
         account.setName(name);
         account.setNumber(number);
