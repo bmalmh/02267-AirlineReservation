@@ -48,17 +48,6 @@ public class AirlineResource {
                 
         return xml;
     }
-
-    
-    
-    /* The bookFlight operation takes a booking number and creditcard information
-     * and perma- nently books the flight after first having charged the 
-     * creditcard for the flight using the chargeCreditCard of the bank. 
-     * The bookFlight operation returns true, if the booking was successful and 
-     * returns a fault (i.e., throws an exception) if the creditcard information 
-     * was not valid, there was not enough money on the client account
-     * , or if for other reasons the booking fails.
-     */
     
     public boolean bookFlight
             (String bookingNumber, 
@@ -91,7 +80,7 @@ public class AirlineResource {
              }
             }
         }
-        return false;
+        throw new Exception("That bookingnumber doesn't exist.");
     }
 
     private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
