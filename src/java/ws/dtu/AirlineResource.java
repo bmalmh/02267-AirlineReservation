@@ -4,14 +4,13 @@
  */
 package ws.dtu;
 
-import com.google.gson.Gson;
+import com.thoughtworks.xstream.XStream;
 import dk.dtu.imm.fastmoney.BankService;
 import dk.dtu.imm.fastmoney.CreditCardFaultMessage;
 import dk.dtu.imm.fastmoney.types.AccountType;
 import flightObjects.FlightDataCreator;
 import flightObjects.FlightListData;
 import java.util.ArrayList;
-
 /**
  *
  * 
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 
 @javax.jws.WebService
 public class AirlineResource {
-    
     private AccountType airlineAccount = createAccount("LameDuck", "50208812");
     BankService bank = new BankService();
     static ArrayList<FlightListData> mockFlightData = FlightDataCreator.getFlightListData();
@@ -43,22 +41,13 @@ public class AirlineResource {
                 }
             }
         }
+        
+        XStream xstream = new XStream();
 
-        String json = new Gson().toJson(result);
-        // Husk at ændre return værdi
-        return json;
+        String xml = xstream.toXML(result);
+                
+        return xml;
     }
-
-    
-    
-    /* The bookFlight operation takes a booking number and creditcard information
-     * and perma- nently books the flight after first having charged the 
-     * creditcard for the flight using the chargeCreditCard of the bank. 
-     * The bookFlight operation returns true, if the booking was successful and 
-     * returns a fault (i.e., throws an exception) if the creditcard information 
-     * was not valid, there was not enough money on the client account
-     * , or if for other reasons the booking fails.
-     */
     
     public boolean bookFlight
             (String bookingNumber, 
@@ -91,7 +80,7 @@ public class AirlineResource {
              }
             }
         }
-        return false;
+        throw new Exception("That bookingnumber doesn't exist.");
     }
 
     private boolean validateCreditCard(int group, dk.dtu.imm.fastmoney.types.CreditCardInfoType creditCardInfo, int amount) throws CreditCardFaultMessage {
